@@ -1,5 +1,5 @@
 CoordMode Mouse, Screen
-CustomColor = FF00FF  ; Can be any RGB color (it will be made transparent below).
+CustomColor = 00FFFF  ; Can be any RGB color (it will be made transparent below).
 
 Gui +LastFound +AlwaysOnTop -Caption +ToolWindow  ; +ToolWindow avoids a taskbar button and an alt-tab menu item.
 Gui, Color, %CustomColor%
@@ -7,6 +7,51 @@ Gui, Font, s16
 Gui, Font, w1000  ; Set a large font size (16-point).
 Gui, Add, Text, vMyText cBlack, 1000 YYYYY  ; XX & YY serve to auto-size the window.
 
+
+;;;;;;;;;;;;;;;;;;;;;;;
+;; Mouse Move
+#UseHook 
+Increment = 2
+MouseDelay = 0 
+
+s:: 
+d:: 
+f:: 
+e:: 
+xVal= 
+yVal= 
+If GetKeyState("CapsLock","T") 
+   { 
+      IncrementValue := Increment        
+      Loop, 
+      { 
+      If (A_Index > IncrementValue * 2.5) and (IncrementValue < Increment * 20)  
+         IncrementValue := IncrementValue * 2
+      If GetKeyState("D", "P") 
+         yVal := IncrementValue 
+      Else If GetKeyState("E", "P") 
+         yVal := -IncrementValue 
+      If !yVal 
+         yVal := 0 
+      If GetKeyState("S", "P") 
+         xVal := -IncrementValue 
+      Else If GetKeyState("F", "P") 
+         xVal := IncrementValue 
+      If !xVal 
+         xVal := 0 
+      If GetKeyState(A_ThisHotKey, "P")  
+         MouseMove, %xVal%, %yVal%,%MouseDelay%,R 
+      Else  
+         Break 
+      } 
+   }
+Else 
+   Send % "{" . A_ThisHotKey . "}" 
+return 
+;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;
+;; Show Capslock Message
 CapsLock::
 GetKeyState press, CapsLock, T
 
@@ -28,6 +73,7 @@ else
   SetCapsLockState Off
 }
 return
+;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;;Arrow Keys
@@ -316,20 +362,20 @@ n::n
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;;Page up and Page down
 
-F::
+G::
 GetKeyState c, CapsLock, T
 if c = D
 	send {PgUp}
 else
-  send {blind}{f}
+  send {blind}{g}
 return
 
-+F::
++G::
 GetKeyState c, CapsLock, T
 if c = D
 	send +{PgUp}
 else
-  send {blind}{f}
+  send {blind}{g}
 return
 f::f
 
@@ -356,24 +402,24 @@ v::v
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;;Browser Controls
 
-S::
+Z::
 GetKeyState c, CapsLock, T
 if c = D
 	send {Browser_Back}
 else
-  send {blind}{s}
+  send {blind}{z}
 return
-s::s
+z::z
 
 
-D::
+X::
 GetKeyState c, CapsLock, T
 if c = D
 	send {Browser_Forward}
 else
-  send {blind}{d}
+  send {blind}{x}
 return
-d::d
+x::x
 
 
 Q::
@@ -386,14 +432,14 @@ return
 q::q
 
 
-R::
+A::
 GetKeyState c, CapsLock, T
 if c = D
 	send {Browser_Refresh}
 else
-  send {blind}{r}
+  send {blind}{a}
 return
-r::r
+a::a
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -440,5 +486,52 @@ else
   send {Backspace}
 return
 Backspace::Backspace
+
+;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Mouse Button
+
+R::
+GetKeyState c, CapsLock, T
+if c = D
+	send {LButton}
+else
+  send {blind}{r}
+return
+
++R::
+GetKeyState c, CapsLock, T
+if c = D
+	send +{LButton}
+else
+  send {blind}{r}
+return
+
+^R::
+GetKeyState c, CapsLock, T
+if c = D
+	send ^{LButton}
+else
+  send {blind}{r}
+return
+
++^R::
+GetKeyState c, CapsLock, T
+if c = D
+	send +^{LButton}
+else
+  send {blind}{r}
+return
+r::r
+
+W::
+GetKeyState c, CapsLock, T
+if c = D
+	send {RButton}
+else
+  send {blind}{w}
+return
+w::w
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;
