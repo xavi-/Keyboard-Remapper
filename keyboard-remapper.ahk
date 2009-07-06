@@ -52,9 +52,9 @@ return
 
 ;;;;;;;;;;;;;;;;;;;;
 ;; Show Capslock Message
-CapsLock::
-GetKeyState press, CapsLock, T
+*CapsLock::
 
+GetKeyState press, CapsLock, T
 if press = U
 {
   SetCapsLockState On
