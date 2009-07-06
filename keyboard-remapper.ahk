@@ -48,6 +48,7 @@ if GetKeyState("CapsLock","T")
 else 
    Send % "{" . A_ThisHotKey . "}" 
 return 
+
 ;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;
@@ -73,6 +74,7 @@ else
   SetCapsLockState Off
 }
 return
+
 ;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;
@@ -106,7 +108,6 @@ else
   send {blind}{i}
 return
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -132,6 +133,7 @@ if GetKeyState("Capslock", "T")
 else
   send {blind}{p}
 return
+
 ;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;
@@ -237,6 +239,8 @@ return
 
 
 `::ShiftAltTab
+
+^`::send ^+{Tab}
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 
