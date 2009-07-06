@@ -25,36 +25,36 @@ if GetKeyState("CapsLock","T")
   IncrementValue := Increment        
   Loop, 
   { 
-      If (A_Index > IncrementValue * 2.5) and (IncrementValue < Increment * 20)  
-         IncrementValue := IncrementValue * 2
-      If GetKeyState("D", "P") 
-         yVal := IncrementValue 
-      Else If GetKeyState("E", "P") 
-         yVal := -IncrementValue 
-      If !yVal 
-         yVal := 0 
-      If GetKeyState("S", "P") 
-         xVal := -IncrementValue 
-      Else If GetKeyState("F", "P") 
-         xVal := IncrementValue 
-      If !xVal 
-         xVal := 0 
-      If GetKeyState(A_ThisHotKey, "P")  
-         MouseMove, %xVal%, %yVal%,%MouseDelay%,R 
-      Else  
-         Break 
+    if (A_Index > IncrementValue * 2.5) and (IncrementValue < Increment * 20)  
+       IncrementValue := IncrementValue * 2
+    if GetKeyState("D", "P") 
+       yVal := IncrementValue 
+    else if GetKeyState("E", "P") 
+       yVal := -IncrementValue 
+    if !yVal 
+       yVal := 0 
+    if GetKeyState("S", "P") 
+       xVal := -IncrementValue 
+    else if GetKeyState("F", "P") 
+       xVal := IncrementValue 
+    if !xVal 
+       xVal := 0 
+    if GetKeyState(A_ThisHotKey, "P")  
+       MouseMove, %xVal%, %yVal%,%MouseDelay%,R 
+    else  
+       Break 
   } 
 }
 else 
-   Send % "{" . A_ThisHotKey . "}" 
+   send % "{" . A_ThisHotKey . "}" 
 return 
 
 ;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;
 ;; Show Capslock Message
-*CapsLock::
 
+*CapsLock::
 GetKeyState press, CapsLock, T
 if press = U
 {
@@ -66,7 +66,6 @@ if press = U
   MouseY = 5
 
   Gui, Show, x%MouseX% y%MouseY% NoActivate  ; NoActivate avoids deactivating the currently active window.
-
 }
 else
 {
@@ -236,7 +235,6 @@ return
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Tab Modifilers
-
 
 `::ShiftAltTab
 
