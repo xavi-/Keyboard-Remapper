@@ -166,7 +166,7 @@ return
 
 $+G::
 if GetKeyState("Capslock", "T")
-  send +{PgUp}
+  send {blind}{PgUp}
 else
   send {blind}{g}
 return
@@ -181,7 +181,7 @@ return
 
 $+V::
 if GetKeyState("Capslock", "T")
-  send +{PgDn}
+  send {blind}{PgDn}
 else
   send {blind}{v}
 return
@@ -238,7 +238,7 @@ return
 
 `::ShiftAltTab
 
-^`::send ^+{Tab}
+^`::send {blind}+{Tab}
 
 $Tab::
 if GetKeyState("Capslock", "T")
