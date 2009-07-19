@@ -240,6 +240,13 @@ return
 
 ^`::send ^+{Tab}
 
+$Tab::
+if GetKeyState("Capslock", "T")
+  send {blind}{Esc} 
+else
+  send {blind}{Tab}
+return
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;
