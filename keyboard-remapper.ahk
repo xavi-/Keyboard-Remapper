@@ -205,13 +205,6 @@ else
   send {blind}{x}
 return
 
-$Q::
-if GetKeyState("Capslock", "T")
-  send {Browser_Stop}
-else
-  send {blind}{q}
-return
-
 $A::
 if GetKeyState("Capslock", "T")
   send {Browser_Refresh}
@@ -240,11 +233,11 @@ return
 
 ^`::send {blind}+{Tab}
 
-$Tab::
+$Q::
 if GetKeyState("Capslock", "T")
   send {blind}{Esc} 
 else
-  send {blind}{Tab}
+  send {blind}{q}
 return
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;
