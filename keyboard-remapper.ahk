@@ -7,50 +7,6 @@ Gui, Font, s16
 Gui, Font, w1000  ; Set a large font size (16-point).
 Gui, Add, Text, vMyText cBlack, 1000 YYYYY  ; XX & YY serve to auto-size the window.
 
-
-;;;;;;;;;;;;;;;;;;;;;;;
-;; Mouse Move
-#UseHook 
-Increment = 2
-MouseDelay = 0 
-
-s:: 
-d:: 
-f:: 
-e:: 
-xVal= 
-yVal= 
-if GetKeyState("CapsLock","T") 
-{ 
-  IncrementValue := Increment        
-  Loop, 
-  { 
-    if (A_Index > IncrementValue * 2.5) and (IncrementValue < Increment * 20)  
-       IncrementValue := IncrementValue * 2
-    if GetKeyState("D", "P") 
-       yVal := IncrementValue 
-    else if GetKeyState("E", "P") 
-       yVal := -IncrementValue 
-    if !yVal 
-       yVal := 0 
-    if GetKeyState("S", "P") 
-       xVal := -IncrementValue 
-    else if GetKeyState("F", "P") 
-       xVal := IncrementValue 
-    if !xVal 
-       xVal := 0 
-    if GetKeyState(A_ThisHotKey, "P")  
-       MouseMove, %xVal%, %yVal%,%MouseDelay%,R 
-    else  
-       Break 
-  } 
-}
-else 
-   send % "{" . A_ThisHotKey . "}" 
-return 
-
-;;;;;;;;;;;;;;;;;;;;
-
 ;;;;;;;;;;;;;;;;;;;;
 ;; Show Capslock Message
 
@@ -157,33 +113,32 @@ return
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;;Page up and Page down
 
-$G::
+$T::
 if GetKeyState("Capslock", "T")
   send {PgUp}
+else
+  send {blind}{t}
+return
+
+$+T::
+if GetKeyState("Capslock", "T")
+  send {blind}{PgUp}
+else
+  send {blind}{t}
+return
+
+$G::
+if GetKeyState("Capslock", "T")
+  send {PgDn}
 else
   send {blind}{g}
 return
 
 $+G::
 if GetKeyState("Capslock", "T")
-  send {blind}{PgUp}
-else
-  send {blind}{g}
-return
-
-
-$V::
-if GetKeyState("Capslock", "T")
-  send {PgDn}
-else
-  send {blind}{v}
-return
-
-$+V::
-if GetKeyState("Capslock", "T")
   send {blind}{PgDn}
 else
-  send {blind}{v}
+  send {blind}{g}
 return
 
 ;;;;;;;;;;;;;;;;;;;;;;;
@@ -191,25 +146,25 @@ return
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;;Browser Controls
 
-$Z::
+$H::
 if GetKeyState("Capslock", "T")
   send {Browser_Back}
 else
-  send {blind}{z}
+  send {blind}{h}
 return
 
-$X::
+$;::
 if GetKeyState("Capslock", "T")
   send {Browser_Forward}
 else
-  send {blind}{x}
+  send {blind}{;}
 return
 
-$A::
+$Y::
 if GetKeyState("Capslock", "T")
   send {Browser_Refresh}
 else
-  send {blind}{a}
+  send {blind}{y}
 return
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -233,6 +188,11 @@ return
 
 ^`::send {blind}+{Tab}
 
+;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Override Esc
+
 $Q::
 if GetKeyState("Capslock", "T")
   send {blind}{Esc} 
@@ -245,18 +205,88 @@ return
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Mouse Button
 
-$*R::
+$*,::
 if GetKeyState("Capslock", "T")
   send {blind}{LButton}
+else
+  send {blind}{,}
+return
+
+;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Number Pad
+
+$A::
+if GetKeyState("Capslock", "T")
+  send {blind}{0} 
+else
+  send {blind}{a}
+return
+
+
+$W::
+if GetKeyState("Capslock", "T")
+  send {blind}{1} 
+else
+  send {blind}{w}
+return
+
+$S::
+if GetKeyState("Capslock", "T")
+  send {blind}{2} 
+else
+  send {blind}{s}
+return
+
+$X::
+if GetKeyState("Capslock", "T")
+  send {blind}{3}
+else
+  send {blind}{x}
+return
+
+$E::
+if GetKeyState("Capslock", "T")
+  send {blind}{4} 
+else
+  send {blind}{e}
+return
+
+$D::
+if GetKeyState("Capslock", "T")
+  send {blind}{5} 
+else
+  send {blind}{d}
+return
+
+$C::
+if GetKeyState("Capslock", "T")
+  send {blind}{6} 
+else
+  send {blind}{c}
+return
+
+$R::
+if GetKeyState("Capslock", "T")
+  send {blind}{7} 
 else
   send {blind}{r}
 return
 
-$W::
+$F::
 if GetKeyState("Capslock", "T")
-  send {RButton}
+  send {blind}{8} 
 else
-  send {blind}{w}
+  send {blind}{f}
 return
+
+$V::
+if GetKeyState("Capslock", "T")
+  send {blind}{9} 
+else
+  send {blind}{v}
+return
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;
