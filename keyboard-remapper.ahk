@@ -212,6 +212,13 @@ else
   send {blind}{,}
 return
 
+$*.::
+if GetKeyState("Capslock", "T")
+  send {blind}{RButton}
+else
+  send {blind}{.}
+return
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;
